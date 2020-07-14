@@ -72,12 +72,22 @@ func main() {
 		fmt.Print("\u001B[2K\r", done, " / ", len(filesSource))
 
 		if _, ok := filesTarget[k]; ok != true {
-			log.WriteString(k + " File does not exist on target!\n")
+			log.WriteString("====\n-> File does not exist\nSource: ")
+			log.WriteString(k)
+			log.WriteString("\nTarget: Does not exist\n\n")
 			continue
 		}
 
 		if h := filesTarget[k]; h != v {
-			log.WriteString(k + " Hashes differ! (Source: " + v + ", target: " + h + ")\n")
+			log.WriteString("====\n-> Hashes differ\nSource: ")
+			log.WriteString(k)
+			log.WriteString(" (hash: ")
+			log.WriteString(v)
+			log.WriteString(" )\nTarget: ")
+			log.WriteString(k)
+			log.WriteString(" (hash: ")
+			log.WriteString(h)
+			log.WriteString(" )\n\n")
 			continue
 		}
 	}
@@ -90,7 +100,10 @@ func main() {
 		fmt.Print("\u001B[2K\r", done, " / ", len(filesTarget))
 
 		if _, ok := filesSource[k]; ok != true {
-			log.WriteString(k + " File does not exist on source!\n")
+			log.WriteString("====\n-> File does not exist\nSource: Does not exist")
+			log.WriteString("\nTarget: ")
+			log.WriteString(k)
+			log.WriteString("\n\n")
 			continue
 		}
 	}
